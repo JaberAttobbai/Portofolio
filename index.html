@@ -1,48 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Professional Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              primary: '#3b82f6',
-              secondary: '#64748b',
-              dark: '#0f172a',
-              darker: '#020617',
-            }
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Jaber Farhan | Cloud & Full-Stack Software Engineer | AWS Certified</title>
+  <meta name="title" content="Jaber Farhan | Cloud & Full-Stack Software Engineer | AWS Certified" />
+  <meta name="description"
+    content="Cloud & Full-Stack Engineer specializing in AWS, MERN Stack, DevOps, and scalable web applications. 19 industry certifications including AWS Solutions Architect. Available for hire." />
+  <meta name="keywords"
+    content="Cloud Engineer, AWS Solutions Architect, Full-Stack Developer, MERN Stack, React, Node.js, DevOps, Software Engineer, Jaber Farhan" />
+  <meta name="author" content="Jaber Farhan" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://jaber-farhan-portofolio.vercel.app" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jaber-farhan-portofolio.vercel.app" />
+  <meta property="og:title" content="Jaber Farhan | Cloud & Full-Stack Software Engineer | AWS Certified" />
+  <meta property="og:description"
+    content="Cloud & Full-Stack Engineer with 19 certifications, specializing in AWS, MERN Stack, and DevOps. Building scalable, efficient solutions." />
+  <meta property="og:image" content="https://jaber-farhan-portofolio.vercel.app/og-image.jpg" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://jaber-farhan-portofolio.vercel.app" />
+  <meta property="twitter:title" content="Jaber Farhan | Cloud & Full-Stack Software Engineer" />
+  <meta property="twitter:description"
+    content="AWS Certified Solutions Architect | MERN Stack Expert | 19 Certifications" />
+  <meta property="twitter:image" content="https://jaber-farhan-portofolio.vercel.app/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="theme-color" content="#3b82f6" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
           },
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#64748b',
+            dark: '#0f172a',
+            darker: '#020617',
+          }
         },
-      }
-    </script>
-    <style>
-      body {
-        background-color: #0f172a;
-        color: #f8fafc;
-      }
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0f172a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
-      }
-    </style>
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -55,10 +91,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <div id="root"></div>
+
+<body>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>

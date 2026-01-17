@@ -5,13 +5,14 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
-import AIChat from './components/AIChat';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const AppContent: React.FC = () => {
   return (
-    <div className="bg-dark min-h-screen text-slate-200 selection:bg-primary/30 selection:text-white">
+    <div className="bg-dark min-h-screen text-slate-200 selection:bg-primary/30 selection:text-white transition-colors duration-300" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}>
       <Navbar />
       <main>
         <Hero />
@@ -19,18 +20,20 @@ const AppContent: React.FC = () => {
         <Experience />
         <Projects />
         <Skills />
+        <Certifications />
         <Contact />
       </main>
-      <AIChat />
     </div>
   );
 };
 
 const App: React.FC = () => {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 };
 

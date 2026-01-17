@@ -5,7 +5,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { platform: "Email", url: 'mailto:jabermahyoub@gmail.com', icon: "mail" },
   { platform: "GitHub", url: "https://github.com/jaberattobbai", icon: "github" },
   { platform: "WhatsApp", url: "https://wa.me/+967778102165", icon: "whatsapp" },
-  
+
 ];
 
 const ENGLISH_CONTENT: ContentData = {
@@ -36,18 +36,18 @@ Motivated by problem-solving and continuous learning, I thrive on building effic
       {
         id: '1',
         company: "Freelance",
-        role: "Senior Software Engineer",
+        role: "Full Stack Developer",
         period: "10/2023 - Present",
         description: "Enhanced development workflows to utilize AI-powered coding assistants such as GitHub Copilot, leading to a 30% reduction in coding time. Engineered a suite of scalable, high-performance web applications that supported a 50% increase in user traffic without performance degradation.",
-        technologies: ["AWS", "React", "Node.js", "Generative AI", "CI/CD"]
+        technologies: ["React", "Node.js", "AI-Powered Tools", "GitHub Copilot", "Performance Optimization"]
       },
       {
         id: '2',
         company: "Freelance",
         role: "Junior Software Engineer",
         period: "03/2023 - 07/2024",
-        description: "Delivered three custom, full-stack web applications for small to medium-sized clients using React, Node.js, and MongoDB. Managed the end-to-end SDLC, achieving 100% on-time delivery. Optimized applications for mobile and SEO, resulting in a 25% increase in organic search visibility.",
-        technologies: ["React", "Node.js", "MongoDB", "Express", "REST APIs"]
+        description: "Delivered three custom, full-stack web applications for small to medium-sized clients using React, Node.js, and MongoDB. Managed the end-to-end Software Development Lifecycle (SDLC), successfully translating ambiguous client requirements into clear technical specifications and achieving 100% on-time project delivery. Optimized all deployed applications for mobile responsiveness and SEO, resulting in an average 25% increase in organic search visibility and client lead generation. Implemented RESTful APIs into client applications, ensuring data integrity and application stability under typical load.",
+        technologies: ["React", "Node.js", "MongoDB", "Express", "REST APIs", "SEO", "Mobile Responsive"]
       }
     ]
   },
@@ -140,18 +140,18 @@ const ARABIC_CONTENT: ContentData = {
       {
         id: '1',
         company: "عمل حر",
-        role: "مهندس برمجيات أول",
+        role: "مطور Full Stack",
         period: "10/2023 - الحالي",
         description: "تحسين سير عمل التطوير لاستخدام مساعدي البرمجة المدعومين بالذكاء الاصطناعي مثل GitHub Copilot، مما أدى إلى تقليل وقت البرمجة بنسبة 30%. هندسة مجموعة من تطبيقات الويب القابلة للتوسع وعالية الأداء التي دعمت زيادة بنسبة 50% في حركة المستخدمين دون تدهور في الأداء.",
-        technologies: ["AWS", "React", "Node.js", "Generative AI", "CI/CD"]
+        technologies: ["React", "Node.js", "أدوات الذكاء الاصطناعي", "GitHub Copilot", "تحسين الأداء"]
       },
       {
         id: '2',
         company: "عمل حر",
         role: "مهندس برمجيات مبتدئ",
         period: "03/2023 - 07/2024",
-        description: "تسليم ثلاثة تطبيقات ويب مخصصة للعملاء الصغار والمتوسطين باستخدام React و Node.js و MongoDB. إدارة دورة حياة تطوير البرمجيات (SDLC) بالكامل، وتحقيق تسليم المشاريع في الوقت المحدد بنسبة 100%. تحسين التطبيقات للتجاوب مع الهواتف ومحركات البحث (SEO)، مما أدى إلى زيادة بنسبة 25% في الظهور في البحث.",
-        technologies: ["React", "Node.js", "MongoDB", "Express", "REST APIs"]
+        description: "تسليم ثلاثة تطبيقات ويب مخصصة كاملة للعملاء الصغار والمتوسطين باستخدام React و Node.js و MongoDB. إدارة دورة حياة تطوير البرمجيات (SDLC) بالكامل، وترجمة متطلبات العملاء الغامضة بنجاح إلى مواصفات تقنية واضحة وتحقيق تسليم المشاريع في الوقت المحدد بنسبة 100%. تحسين جميع التطبيقات للتجاوب مع الهواتف ومحركات البحث (SEO)، مما أدى إلى زيادة بمعدل 25% في الظهور في البحث العضوي وتوليد العملاء المحتملين. تنفيذ واجهات برمجة التطبيقات RESTful في تطبيقات العملاء، مما يضمن سلامة البيانات واستقرار التطبيق تحت الحمل النموذجي.",
+        technologies: ["React", "Node.js", "MongoDB", "Express", "REST APIs", "SEO", "تصميم متجاوب"]
       }
     ]
   },

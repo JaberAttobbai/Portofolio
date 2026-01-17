@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Languages } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Menu, X, Languages, Sun, Moon } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { content, language, setLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,16 +41,32 @@ const Navbar: React.FC = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map(link => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+            <a
+              key={link.name}
+              href={link.href}
               className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
             >
               {link.name}
             </a>
           ))}
-          
-          <button 
+
+          <motion.button
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 text-slate-300 hover:text-primary transition-colors rounded-full hover:bg-slate-800"
+            aria-label="Toggle theme"
+          >
+            <motion.div
+              initial={false}
+              animate={{ rotate: theme === 'dark' ? 0 : 180 }}
+              transition={{ duration: 0.3 }}
+            >
+              {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </motion.div>
+          </motion.button>
+
+          <button
             onClick={toggleLanguage}
             className="flex items-center gap-1 text-sm text-slate-300 hover:text-primary transition-colors border border-slate-700 rounded-full px-3 py-1"
           >
@@ -58,14 +77,22 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
-          <button 
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-slate-300 hover:text-white"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
+
+          <button
             onClick={toggleLanguage}
             className="text-slate-300 hover:text-white"
           >
-             <span className="font-bold">{language === 'en' ? 'AR' : 'EN'}</span>
+            <span className="font-bold">{language === 'en' ? 'AR' : 'EN'}</span>
           </button>
-          
-          <button 
+
+          <button
             className="text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -78,8 +105,8 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full start-0 w-full bg-darker border-b border-slate-800 py-4 px-6 flex flex-col gap-4 shadow-xl text-start">
           {navLinks.map(link => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
               className="text-slate-300 hover:text-primary py-2 block"

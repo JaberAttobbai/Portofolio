@@ -1,73 +1,203 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import Section from './ui/Section';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from 'recharts';
+import { Code, Server, Cloud, Wrench } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { fadeInUp, scaleIn, staggerContainer } from '../lib/animation-variants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Skills: React.FC = () => {
-  const { content, dir } = useLanguage();
-  
-  // Group skills for display list
-  const categories = Array.from(new Set(content.skills.list.map(s => s.category)));
+  const { content } = useLanguage();
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const { ref, controls } = useScrollAnimation();
 
-  // Custom Tooltip for Recharts
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-slate-800 border border-slate-700 p-3 rounded shadow-lg text-start">
-          <p className="text-white font-medium">{label}</p>
-          <p className="text-primary text-sm">Proficiency: {payload[0].value}%</p>
-        </div>
-      );
-    }
-    return null;
+  const categories = [
+    { name: 'All', icon: Code },
+    { name: 'Frontend', icon: Code },
+    { name: 'Backend', icon: Server },
+    { name: 'Tools', icon: Wrench },
+    { name: 'Design', icon: Wrench }
+  ];
+
+  const filteredSkills = selectedCategory === 'All'
+    ? content.skills.list
+    : content.skills.list.filter(skill =>
+      skill.category === selectedCategory ||
+      skill.category === (selectedCategory === 'Frontend' ? 'واجهة أمامية' : selectedCategory === 'Backend' ? 'خلفية' : 'أدوات')
+    );
+
+  const getSkillColor = (level: number) => {
+    if (level >= 90) return 'hsl(172, 100%, 41%)'; // Accent
+    if (level >= 75) return 'hsl(214, 100%, 50%)'; // Primary
+    if (level >= 60) return 'hsl(262, 83%, 58%)'; // Secondary
+    return 'hsl(215, 20%, 65%)'; // Tertiary
   };
 
   return (
-    <Section id="skills" title={content.skills.title} subtitle="true" className="bg-dark">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        
-        {/* Recharts Visualization */}
-        <div className="h-[400px] w-full bg-slate-800/30 p-6 rounded-xl border border-slate-700/50" dir="ltr">
-           <h3 className="text-xl font-semibold text-white mb-6 text-center">{content.skills.chartTitle}</h3>
-           <ResponsiveContainer width="100%" height="100%">
-             <BarChart data={content.skills.list} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
-               <XAxis type="number" domain={[0, 100]} hide />
-               <YAxis 
-                dataKey="name" 
-                type="category" 
-                width={100} 
-                tick={{ fill: '#94a3b8', fontSize: 12 }} 
-                axisLine={false}
-                tickLine={false}
-               />
-               <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-               <Bar dataKey="level" radius={[0, 4, 4, 0]} barSize={20}>
-                 {content.skills.list.map((entry, index) => (
-                   <Cell key={`cell-${index}`} fill={entry.level > 90 ? '#3b82f6' : entry.level > 80 ? '#6366f1' : '#64748b'} />
-                 ))}
-               </Bar>
-             </BarChart>
-           </ResponsiveContainer>
-        </div>
+    <Section id="skills" title={content.skills.title} subtitle={content.skills.chartTitle} className="bg-dark">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={staggerContainer}
+      >
+        {/* Category Filter */}
+        <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <button
+                key={cat.name}
+                onClick={() => setSelectedCategory(cat.name)}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat.name
+                    ? 'bg-gradient-primary text-white shadow-lg scale-105'
+                    : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white'
+                  }`}
+              >
+                <Icon className="w-4 h-4" />
+                {cat.name}
+              </button>
+            );
+          })}
+        </motion.div>
 
-        {/* Tag Cloud / Detail View */}
-        <div className="space-y-8">
-          {categories.map(category => (
-            <div key={category}>
-              <h4 className="text-lg font-medium text-white mb-4 border-b border-slate-800 pb-2">{category}</h4>
-              <div className="flex flex-wrap gap-3">
-                {content.skills.list.filter(s => s.category === category).map(skill => (
-                  <div key={skill.name} className="group relative">
-                    <span className="px-3 py-2 bg-slate-800 text-slate-300 rounded hover:bg-slate-700 hover:text-white transition-colors cursor-default text-sm border border-slate-700">
-                      {skill.name}
-                    </span>
-                  </div>
+        {/* Skills Bar Chart */}
+        <motion.div variants={fadeInUp} className="mb-12">
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={filteredSkills} layout="vertical">
+              <XAxis type="number" domain={[0, 100]} stroke="rgba(148, 163, 184, 0.3)" />
+              <YAxis
+                dataKey="name"
+                type="category"
+                stroke="rgba(148, 163, 184, 0.3)"
+                width={150}
+                style={{ fontSize: '0.875rem' }}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                  border: '1px solid rgba(71, 85, 105, 0.5)',
+                  borderRadius: '0.5rem',
+                  color: 'white'
+                }}
+              />
+              <Bar dataKey="level" radius={[0, 8, 8, 0]}>
+                {filteredSkills.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getSkillColor(entry.level)} />
                 ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <motion.div
+          variants={staggerContainer}
+          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          {filteredSkills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              variants={scaleIn}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="group bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
+            >
+              {/* Progress Circle */}
+              <div className="relative mb-4">
+                <motion.svg
+                  className="w-24 h-24 mx-auto transform -rotate-90"
+                  viewBox="0 0 100 100"
+                >
+                  {/* Background Circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="none"
+                    stroke="rgba(71, 85, 105, 0.3)"
+                    strokeWidth="8"
+                  />
+                  {/* Progress Circle */}
+                  <motion.circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="none"
+                    stroke={getSkillColor(skill.level)}
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * Math.PI * 40}`}
+                    initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
+                    whileInView={{
+                      strokeDashoffset: 2 * Math.PI * 40 * (1 - skill.level / 100)
+                    }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: 'easeOut' }}
+                  />
+                </motion.svg>
+                {/* Percentage */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.span
+                    className="text-2xl font-bold gradient-text"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                  >
+                    {skill.level}%
+                  </motion.span>
+                </div>
               </div>
-            </div>
+
+              {/* Skill Name */}
+              <h3 className="text-center font-semibold text-white group-hover:text-primary transition-colors">
+                {skill.name}
+              </h3>
+
+              {/* Category Badge */}
+              <p className="text-center text-xs text-slate-400 mt-2">
+                {skill.category}
+              </p>
+
+              {/* Hover Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+
+        {/* Cloud & AWS Highlight */}
+        <motion.div
+          variants={fadeInUp}
+          className="mt-16 glass-morphism p-8 rounded-2xl border border-slate-700"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <Cloud className="w-8 h-8 text-primary" />
+            <h3 className="text-2xl font-bold gradient-text">Cloud & AWS Expertise</h3>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'AWS Solutions Architecture', level: 95 },
+              { name: 'Cloud Computing', level: 90 },
+              { name: 'DevOps & CI/CD', level: 85 }
+            ].map((cloudSkill) => (
+              <div key={cloudSkill.name} className="text-center">
+                <div className="text-4xl font-bold gradient-text mb-2">{cloudSkill.level}%</div>
+                <div className="text-sm text-slate-400">{cloudSkill.name}</div>
+                <div className="mt-3 h-2 bg-slate-700 rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-primary"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${cloudSkill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: 'easeOut' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
     </Section>
   );
 };
