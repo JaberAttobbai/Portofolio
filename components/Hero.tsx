@@ -193,7 +193,7 @@ const Hero: React.FC = () => {
               href="https://github.com/JaberAttobbai"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -3 }}
+              whileHover={{ scale: 1.1 }}
               className="p-4 bg-slate-800 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 transition-all duration-300"
             >
               <Github className="w-6 h-6" />
@@ -202,14 +202,14 @@ const Hero: React.FC = () => {
               href="https://linkedin.com/in/jaber-attobbai"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -3 }}
+              whileHover={{ scale: 1.1 }}
               className="p-4 bg-slate-800 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 transition-all duration-300"
             >
               <Linkedin className="w-6 h-6" />
             </motion.a>
             <motion.a
               href="mailto:jabermahyoub@gmail.com"
-              whileHover={{ scale: 1.1, y: -3 }}
+              whileHover={{ scale: 1.1 }}
               className="p-4 bg-slate-800 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 transition-all duration-300"
             >
               <Mail className="w-6 h-6" />
