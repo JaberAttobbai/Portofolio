@@ -35,12 +35,12 @@ const Certifications: React.FC = () => {
                 variants={staggerContainer}
             >
                 {/* Filter Buttons */}
-                <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-3 mb-12">
+                <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4">
                     {providers.map((provider) => (
                         <button
                             key={provider}
                             onClick={() => setSelectedProvider(provider)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedProvider === provider
+                            className={`px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${selectedProvider === provider
                                 ? 'bg-gradient-primary text-white shadow-lg scale-105'
                                 : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white'
                                 }`}
@@ -54,7 +54,7 @@ const Certifications: React.FC = () => {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedProvider}
-                        className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
                         variants={staggerContainer}
                         initial="hidden"
                         animate="visible"
@@ -65,7 +65,7 @@ const Certifications: React.FC = () => {
                                 key={cert.id}
                                 variants={scaleIn}
                                 whileHover={{ scale: 1.03, y: -5 }}
-                                className="group bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
+                                className="group bg-slate-800 rounded-xl p-4 md:p-6 border border-slate-700 hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
                                 style={{
                                     boxShadow: 'var(--shadow-md)',
                                 }}
@@ -77,26 +77,26 @@ const Certifications: React.FC = () => {
 
                                 {/* Icon */}
                                 <motion.div
-                                    className="mb-4 inline-flex p-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg"
+                                    className="mb-3 md:mb-4 inline-flex p-2 md:p-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg"
                                     whileHover={{ rotate: 360 }}
                                     transition={{ duration: 0.6 }}
                                 >
-                                    <Award className="w-6 h-6 text-primary" />
+                                    <Award className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                                 </motion.div>
 
                                 {/* Content */}
-                                <h3 className="text-base font-semibold text-white mb-2 line-clamp-2 min-h-[3rem] group-hover:text-primary transition-colors">
+                                <h3 className="text-sm md:text-base font-semibold text-white mb-2 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem] group-hover:text-primary transition-colors">
                                     {cert.name}
                                 </h3>
 
-                                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-700/50">
+                                <div className="flex items-center justify-between mt-3 md:mt-4 pt-3 md:pt-4 border-t border-slate-700/50">
                                     <div>
                                         <p className="text-xs text-slate-400 mb-1">Provider</p>
-                                        <p className="text-sm font-medium text-slate-200">{cert.provider}</p>
+                                        <p className="text-xs md:text-sm font-medium text-slate-200">{cert.provider}</p>
                                     </div>
                                     <div className="text-right">
                                         <p className="text-xs text-slate-400 mb-1">Year</p>
-                                        <p className="text-sm font-medium text-slate-200">{cert.year}</p>
+                                        <p className="text-xs md:text-sm font-medium text-slate-200">{cert.year}</p>
                                     </div>
                                 </div>
 
@@ -122,13 +122,13 @@ const Certifications: React.FC = () => {
                 {/* Summary Stats */}
                 <motion.div
                     variants={fadeInUp}
-                    className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
+                    className="mt-8 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto px-4"
                 >
                     {providers.filter(p => p !== 'All').map(provider => {
                         const count = CERTIFICATIONS.filter(c => c.provider === provider).length;
                         return (
-                            <div key={provider} className="glass-morphism p-4 rounded-lg text-center">
-                                <div className="text-2xl font-bold gradient-text mb-1">{count}</div>
+                            <div key={provider} className="glass-morphism p-3 md:p-4 rounded-lg text-center">
+                                <div className="text-xl md:text-2xl font-bold gradient-text mb-1">{count}</div>
                                 <div className="text-xs text-slate-400">{provider}</div>
                             </div>
                         );

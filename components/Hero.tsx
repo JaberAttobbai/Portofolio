@@ -61,14 +61,14 @@ const Hero: React.FC = () => {
           {/* Profile Image */}
           <motion.div
             variants={scaleIn}
-            className="mb-8 flex justify-center"
+            className="mb-6 md:mb-8 flex justify-center"
           >
             <motion.div
               className="relative"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary shadow-2xl relative">
+              <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary shadow-2xl relative">
                 <img
                   src="/profile.jpg"
                   alt="Jaber Farhan"
@@ -92,9 +92,9 @@ const Hero: React.FC = () => {
           </motion.div>
 
           {/* Greeting */}
-          <motion.div variants={fadeInUp} className="mb-4">
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-300 border border-slate-700">
-              <Sparkles className="w-4 h-4 text-yellow-400" />
+          <motion.div variants={fadeInUp} className="mb-3 md:mb-4">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-slate-800/50 rounded-full text-xs md:text-sm text-slate-300 border border-slate-700">
+              <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" />
               {content.hero.availability}
             </span>
           </motion.div>
@@ -102,22 +102,22 @@ const Hero: React.FC = () => {
           {/* Name */}
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 px-4"
           >
             <span className="gradient-text">{content.hero.name}</span>
           </motion.h1>
 
           {/* Title & Typed Effect */}
-          <motion.div variants={fadeInUp} className="mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-200 mb-4">
+          <motion.div variants={fadeInUp} className="mb-6 md:mb-8 px-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-200 mb-3 md:mb-4">
               {content.hero.title}
             </h2>
-            <div className="text-xl md:text-2xl text-primary h-8 flex items-center justify-center">
+            <div className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary min-h-[2rem] md:min-h-[2.5rem] flex items-center justify-center">
               <span className="font-mono">{typedText}</span>
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
-                className="inline-block w-0.5 h-6 bg-primary ml-1"
+                className="inline-block w-0.5 h-5 md:h-6 bg-primary ml-1"
               />
             </div>
           </motion.div>
@@ -125,7 +125,7 @@ const Hero: React.FC = () => {
           {/* Tagline */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-400 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4"
           >
             {content.hero.tagline}
           </motion.p>
@@ -133,19 +133,19 @@ const Hero: React.FC = () => {
           {/* Stats */}
           <motion.div
             variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-12 max-w-4xl mx-auto px-4"
           >
             {content.about.stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 variants={fadeInUp}
-                className="glass-morphism p-6 rounded-xl border border-slate-700/50 hover:border-primary/50 transition-all duration-300"
+                className="glass-morphism p-4 md:p-6 rounded-xl border border-slate-700/50 hover:border-primary/50 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -5 }}
               >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 md:mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400">{stat.label}</div>
+                <div className="text-xs md:text-sm text-slate-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -153,22 +153,22 @@ const Hero: React.FC = () => {
           {/* CTA Buttons */}
           <motion.div
             variants={fadeInUp}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12 px-4"
           >
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 gradient-primary rounded-full text-white font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-2"
+              className="px-6 py-3 md:px-8 md:py-4 gradient-primary rounded-full text-white font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 text-sm md:text-base"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4 md:w-5 md:h-5" />
               Hire Me
             </motion.a>
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-slate-800 rounded-full text-white font-semibold border border-slate-700 hover:border-primary transition-all duration-300"
+              className="px-6 py-3 md:px-8 md:py-4 bg-slate-800 rounded-full text-white font-semibold border border-slate-700 hover:border-primary transition-all duration-300 text-center text-sm md:text-base"
             >
               View Projects
             </motion.a>
@@ -177,9 +177,9 @@ const Hero: React.FC = () => {
               download="Jaber-Farhan-CV.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-slate-800/50 rounded-full text-slate-300 font-semibold border border-slate-700 hover:border-primary hover:text-white transition-all duration-300 flex items-center gap-2"
+              className="px-6 py-3 md:px-8 md:py-4 bg-slate-800/50 rounded-full text-slate-300 font-semibold border border-slate-700 hover:border-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 text-sm md:text-base"
             >
-              <Download className="w-5 h-5" />
+              <Download className="w-4 h-4 md:w-5 md:h-5" />
               {content.about.resumeBtn}
             </motion.a>
           </motion.div>

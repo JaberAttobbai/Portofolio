@@ -43,19 +43,19 @@ const Skills: React.FC = () => {
         variants={staggerContainer}
       >
         {/* Category Filter */}
-        <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-3 mb-12">
+        <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4">
           {categories.map((cat) => {
             const Icon = cat.icon;
             return (
               <button
                 key={cat.name}
                 onClick={() => setSelectedCategory(cat.name)}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat.name
-                    ? 'bg-gradient-primary text-white shadow-lg scale-105'
-                    : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white'
+                className={`px-4 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat.name
+                  ? 'bg-gradient-primary text-white shadow-lg scale-105'
+                  : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white'
                   }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-3 h-3 md:w-4 md:h-4" />
                 {cat.name}
               </button>
             );
@@ -63,8 +63,33 @@ const Skills: React.FC = () => {
         </motion.div>
 
         {/* Skills Bar Chart */}
-        <motion.div variants={fadeInUp} className="mb-12">
-          <ResponsiveContainer width="100%" height={400}>
+        <motion.div variants={fadeInUp} className="mb-8 md:mb-12 px-2">
+          <ResponsiveContainer width="100%" height={300} className="md:hidden">
+            <BarChart data={filteredSkills} layout="vertical">
+              <XAxis type="number" domain={[0, 100]} stroke="rgba(148, 163, 184, 0.3)" />
+              <YAxis
+                dataKey="name"
+                type="category"
+                stroke="rgba(148, 163, 184, 0.3)"
+                width={100}
+                style={{ fontSize: '0.75rem' }}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                  border: '1px solid rgba(71, 85, 105, 0.5)',
+                  borderRadius: '0.5rem',
+                  color: 'white'
+                }}
+              />
+              <Bar dataKey="level" radius={[0, 8, 8, 0]}>
+                {filteredSkills.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getSkillColor(entry.level)} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+          <ResponsiveContainer width="100%" height={400} className="hidden md:block">
             <BarChart data={filteredSkills} layout="vertical">
               <XAxis type="number" domain={[0, 100]} stroke="rgba(148, 163, 184, 0.3)" />
               <YAxis
@@ -94,19 +119,19 @@ const Skills: React.FC = () => {
         {/* Skills Grid */}
         <motion.div
           variants={staggerContainer}
-          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
         >
           {filteredSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
               variants={scaleIn}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="group bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
+              className="group bg-slate-800 p-4 md:p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
             >
               {/* Progress Circle */}
-              <div className="relative mb-4">
+              <div className="relative mb-3 md:mb-4">
                 <motion.svg
-                  className="w-24 h-24 mx-auto transform -rotate-90"
+                  className="w-20 h-20 md:w-24 md:h-24 mx-auto transform -rotate-90"
                   viewBox="0 0 100 100"
                 >
                   {/* Background Circle */}
@@ -139,7 +164,7 @@ const Skills: React.FC = () => {
                 {/* Percentage */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.span
-                    className="text-2xl font-bold gradient-text"
+                    className="text-xl md:text-2xl font-bold gradient-text"
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -151,7 +176,7 @@ const Skills: React.FC = () => {
               </div>
 
               {/* Skill Name */}
-              <h3 className="text-center font-semibold text-white group-hover:text-primary transition-colors">
+              <h3 className="text-center text-sm md:text-base font-semibold text-white group-hover:text-primary transition-colors">
                 {skill.name}
               </h3>
 
@@ -169,21 +194,21 @@ const Skills: React.FC = () => {
         {/* Cloud & AWS Highlight */}
         <motion.div
           variants={fadeInUp}
-          className="mt-16 glass-morphism p-8 rounded-2xl border border-slate-700"
+          className="mt-12 md:mt-16 glass-morphism p-6 md:p-8 rounded-2xl border border-slate-700"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <Cloud className="w-8 h-8 text-primary" />
-            <h3 className="text-2xl font-bold gradient-text">Cloud & AWS Expertise</h3>
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <Cloud className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+            <h3 className="text-xl md:text-2xl font-bold gradient-text">Cloud & AWS Expertise</h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { name: 'AWS Solutions Architecture', level: 95 },
               { name: 'Cloud Computing', level: 90 },
               { name: 'DevOps & CI/CD', level: 85 }
             ].map((cloudSkill) => (
               <div key={cloudSkill.name} className="text-center">
-                <div className="text-4xl font-bold gradient-text mb-2">{cloudSkill.level}%</div>
-                <div className="text-sm text-slate-400">{cloudSkill.name}</div>
+                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">{cloudSkill.level}%</div>
+                <div className="text-xs md:text-sm text-slate-400">{cloudSkill.name}</div>
                 <div className="mt-3 h-2 bg-slate-700 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-gradient-primary"

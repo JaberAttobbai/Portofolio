@@ -32,9 +32,9 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-darker/90 backdrop-blur-md shadow-md py-4' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="text-xl font-bold text-white tracking-tight">
+    <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-darker/90 backdrop-blur-md shadow-md py-3 md:py-4' : 'bg-transparent py-4 md:py-6'}`}>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
+        <a href="#home" className="text-lg md:text-xl font-bold text-white tracking-tight">
           Dev<span className="text-primary">Portfolio</span>
         </a>
 
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-3">
           <button
             onClick={toggleTheme}
             className="p-2 text-slate-300 hover:text-white"
@@ -87,29 +87,29 @@ const Navbar: React.FC = () => {
 
           <button
             onClick={toggleLanguage}
-            className="text-slate-300 hover:text-white"
+            className="text-slate-300 hover:text-white text-sm font-medium"
           >
             <span className="font-bold">{language === 'en' ? 'AR' : 'EN'}</span>
           </button>
 
           <button
-            className="text-white"
+            className="text-white p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full start-0 w-full bg-darker border-b border-slate-800 py-4 px-6 flex flex-col gap-4 shadow-xl text-start">
+        <div className="md:hidden absolute top-full start-0 w-full bg-darker border-b border-slate-800 py-4 px-4 flex flex-col gap-3 shadow-xl text-start">
           {navLinks.map(link => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-slate-300 hover:text-primary py-2 block"
+              className="text-slate-300 hover:text-primary py-2 block text-base"
             >
               {link.name}
             </a>

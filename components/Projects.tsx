@@ -46,14 +46,14 @@ const Projects: React.FC = () => {
         variants={staggerContainer}
       >
         {/* Filter Buttons */}
-        <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-3 mb-12">
+        <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category
-                  ? 'bg-gradient-primary text-white shadow-lg scale-105'
-                  : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white'
+              className={`px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${selectedCategory === category
+                ? 'bg-gradient-primary text-white shadow-lg scale-105'
+                : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white'
                 }`}
             >
               {category}
@@ -63,7 +63,7 @@ const Projects: React.FC = () => {
 
         {/* Projects Grid */}
         <motion.div
-          className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
           variants={staggerContainer}
         >
           {loading ? (
@@ -84,7 +84,7 @@ const Projects: React.FC = () => {
                   boxShadow: 'var(--shadow-lg)',
                 }}
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 md:h-48 overflow-hidden">
                   <motion.img
                     src={project.imageUrl}
                     alt={project.title}
@@ -126,19 +126,19 @@ const Projects: React.FC = () => {
                   </motion.div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-slate-400 text-sm mb-4 h-20 overflow-y-auto leading-relaxed">
+                  <p className="text-slate-400 text-xs md:text-sm mb-4 h-16 md:h-20 overflow-y-auto leading-relaxed">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                     {project.technologies.slice(0, 4).map(tech => (
                       <span
                         key={tech}
-                        className="text-xs bg-slate-700/50 text-blue-300 px-3 py-1 rounded-full border border-slate-600/50 hover:border-primary/50 transition-colors"
+                        className="text-xs bg-slate-700/50 text-blue-300 px-2 py-1 md:px-3 md:py-1 rounded-full border border-slate-600/50 hover:border-primary/50 transition-colors"
                         style={{
                           fontSize: 'var(--text-xs)',
                           borderRadius: 'var(--radius-full)'
@@ -154,13 +154,13 @@ const Projects: React.FC = () => {
                     )}
                   </div>
 
-                  <div className="flex gap-4 pt-4 border-t border-slate-700">
+                  <div className="flex gap-4 pt-3 md:pt-4 border-t border-slate-700">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
+                        className="flex items-center gap-2 text-xs md:text-sm text-slate-300 hover:text-white transition-colors"
                       >
                         <Github className="w-4 h-4" /> {content.projects.code}
                       </a>
@@ -170,7 +170,7 @@ const Projects: React.FC = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-primary hover:text-blue-400 transition-colors ms-auto"
+                        className="flex items-center gap-2 text-xs md:text-sm text-primary hover:text-blue-400 transition-colors ms-auto"
                       >
                         {content.projects.demo} <ExternalLink className="w-4 h-4" />
                       </a>
